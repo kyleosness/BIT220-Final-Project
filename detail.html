@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Item Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="detail">
+
+  <h1>Item Details</h1>
+  <div id="item-details">
+    <!-- Item details will be inserted here -->
+  </div>
+
+  <script>
+    // Get the ID of the item from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const itemId = urlParams.get('id');
+
+    // Fetch data for the specific item
+    fetch('')  // API URL
+      .then(response => response.json())
+      .then(item => {
+        const itemDetails = document.getElementById('item-details');
+        itemDetails.innerHTML = `
+          <h2>${item.name}</h2>
+          <img src="${item.image}" alt="${item.name}">
+          <p>${item.description}</p>
+          <p>Price: $${item.price}</p>
+          <p>Category: ${item.category}</p>
+        `;
+      })
+      .catch(error => console.error('Error fetching item details:', error));
+  </script>
+
+</body>
+</html>
